@@ -1,0 +1,86 @@
+const search = globalThis.location?.search || '';
+const params = new URLSearchParams(search);
+
+export const defaultConfig: IConfig = {
+  text: params.get('name') || 'hello',
+  size: 3.3,
+  height: 0.2,
+  curveSegments: 1,
+  bevelEnabled: true,
+  bevelThickness: 0.15,
+  bevelSize: 0,
+  bevelSegments: 0,
+};
+
+export const properties = [
+  { name: 'text', type: 'text', key: 'text', value: defaultConfig.text },
+  {
+    name: 'size',
+    type: 'range',
+    key: 'size',
+    value: 1,
+    min: 0,
+    max: 10,
+    step: 0.1,
+  },
+  {
+    name: 'height',
+    type: 'range',
+    key: 'height',
+    value: 1,
+    min: 0,
+    max: 10,
+    step: 0.1,
+  },
+  {
+    name: 'curveSegments',
+    type: 'range',
+    key: 'curveSegments',
+    value: 1,
+    min: 0,
+    step: 0.1,
+    max: 10,
+  },
+  {
+    name: 'bevelEnabled',
+    type: 'range',
+    key: 'bevelEnabled',
+    value: 1,
+    min: 0,
+    step: 0.1,
+    max: 10,
+  },
+  {
+    name: 'bevelThickness',
+    type: 'range',
+    key: 'bevelThickness',
+    value: 0,
+    min: 0,
+    step: 0.1,
+    max: 10,
+  },
+  {
+    name: 'bevelSize',
+    type: 'range',
+    key: 'bevelSize',
+    value: 0,
+    min: 0,
+    step: 0.1,
+    max: 10,
+  },
+  {
+    name: 'bevelSegments',
+    type: 'range',
+    key: 'bevelSegments',
+    value: 1,
+    min: 0,
+    step: 0.1,
+    max: 10,
+  },
+  {
+    name: 'color',
+    type: 'color',
+    key: 'color',
+    value: '#FFF',
+  },
+];
