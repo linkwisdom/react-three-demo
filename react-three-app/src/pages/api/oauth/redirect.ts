@@ -1,16 +1,23 @@
 import axios from 'axios';
 
-const clientID = '7e015d8ce32370079895';
-const clientSecret = '2b976af0e6b6ceea2b1554aa31d1fe94ea692cd9';
+// const clientID = '7e015d8ce32370079895';
+// const clientSecret = '2b976af0e6b6ceea2b1554aa31d1fe94ea692cd9';
 
-// const clientID = 'da1007c94a0a6d983a80';
-// const clientSecret = 'a36c50fcb847719033a9d3c363f73a4d9bf2a3dc';
+const clientID = 'da1007c94a0a6d983a80';
+const clientSecret = 'a36c50fcb847719033a9d3c363f73a4d9bf2a3dc';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export async function GET(request: NextApiRequest, response: NextApiResponse) {
-  const requestToken = request.query.code;
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const requestToken = req.query.code;
 
   console.log('authorization code:', requestToken);
+  if (!requestToken) {
+    res.status(200).json({ error: 'token error' });
+    return;
+  }
 
   const tokenResponse = await axios({
     method: 'post',
@@ -38,5 +45,5 @@ export async function GET(request: NextApiRequest, response: NextApiResponse) {
   console.log(result.data);
   const name = result.data.name;
 
-  response.redirect(307, `/welcome.html?name=${name}`);
+  res.redirect(307, `/?name=${name}`);
 }

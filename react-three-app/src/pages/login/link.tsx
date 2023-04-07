@@ -1,8 +1,7 @@
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 
 
-const client_id = '7e015d8ce32370079895';
+const client_id = 'da1007c94a0a6d983a80';
 const authorize_uri = 'https://github.com/login/oauth/authorize';
 
 const Login = () => {
@@ -15,7 +14,7 @@ const Login = () => {
     if (n) {
       setName(n);
     } else {
-      const redirect_uri = `${location.protocol}//${location.host}/oauth/redirect`;
+      const redirect_uri = `${location.protocol}//${location.host}/api/oauth/redirect`;
       setLink(`${authorize_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}`);
     }
   }, [name, link]);
