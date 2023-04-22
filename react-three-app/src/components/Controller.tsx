@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer } from "react";
-import { properties } from "./_config";
+import { properties } from "../config/config";
 
 const CHANGE_CONFIG = 'change_controller_config';
 const UNDO_CONFIG = 'undo_controller_config';

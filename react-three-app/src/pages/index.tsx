@@ -4,8 +4,8 @@ import Text from './Text';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css'
 import Login from './login/link';
-import Controller from './components/Controller';
-import { defaultConfig } from './components/_config';
+import Controller from '../components/Controller';
+import { defaultConfig } from '../config/config';
 
 export default function Index() {
   const [config, changeConfig] = useState<IConfig>(defaultConfig);
