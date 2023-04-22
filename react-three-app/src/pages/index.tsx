@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import styles from './page.module.css'
 import Login from './login/link';
 import Controller from './components/Controller';
-import { defaultConfig } from './components/config';
+import { defaultConfig } from './components/_config';
 
 export default function Index() {
   const [config, changeConfig] = useState<IConfig>(defaultConfig);

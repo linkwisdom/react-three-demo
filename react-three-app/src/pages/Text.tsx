@@ -47,15 +47,15 @@ export default function TextApp(props: { config: IConfig }) {
       }
     });
   }, [geometry, config]);
-  if (!geometry) {
+  if (geometry) {
+    return (
+      <>
+        <mesh {...props} scale={1} geometry={geometry}>
+          <meshStandardMaterial color={String(color)} />
+        </mesh>
+      </>
+    );
+  } else {
     return <></>
   }
-
-  return (
-    <>
-      <mesh {...props} scale={1} geometry={geometry}>
-        <meshStandardMaterial color={String(color)} />
-      </mesh>
-    </>
-  );
 }
