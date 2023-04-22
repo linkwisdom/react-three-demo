@@ -51,34 +51,32 @@ const bindKeyPress = (callback: any) => {
 }
 
 
-export default ({ config, changeConfig }: ControlsProps) => {
+const Controller = ({ config, changeConfig }: ControlsProps) => {
   const [states, changeStates] = useReducer(reducer, config);
+  const undo = useCallback(() => {
+    changeStates({ type: UNDO_CONFIG });
+  }, []);
+
+  const redo = useCallback(() => {
+    changeStates({ type: REDO_CONFIG });
+  }, []);
+
   const onKeyPress = useCallback((e: KeyboardEvent) => {
     if (e.ctrlKey && e.code === 'KeyZ') {
       undo();
     } else if (e.ctrlKey && e.code === 'KeyY') {
       redo();
     }
-  }, [states]);
+  }, [redo, undo]);
 
   useEffect(() => {
     bindKeyPress(onKeyPress);
     changeStates({ type: CHANGE_CONFIG, updator: config });
-  }, []);
+  }, [config, onKeyPress]);
 
   useEffect(() => {
     changeConfig(states);
-  }, [states]);
-
-  const undo = useCallback(() => {
-    changeStates({ type: UNDO_CONFIG });
-  }, [states]);
-
-  const redo = useCallback(() => {
-    changeStates({ type: REDO_CONFIG });
-  }, [states]);
-
-
+  }, [states, changeConfig]);
 
   return (
     <div className="controller">
@@ -115,3 +113,5 @@ export default ({ config, changeConfig }: ControlsProps) => {
     </div>
   );
 };
+
+export default Controller;

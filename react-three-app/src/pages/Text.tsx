@@ -36,18 +36,20 @@ const loadText = async (config: any): Promise<TextGeometry> => {
 interface IConfig { [key: string]: string | number | boolean }
 
 
-export default function TextApp(props: { config: IConfig}) {
+export default function TextApp(props: { config: IConfig }) {
   const { config = {} } = props;
   const { color = 'orange' } = config;
-  const ref = useRef();
   const [geometry, setGeometry] = useState<TextGeometry>();
   useEffect(() => {
     loadText(config).then((text) => {
-      if (text) { 
+      if (text) {
         setGeometry(text);
       }
     });
-  }, [geometry]);
+  }, [geometry, config]);
+  if (!geometry) {
+    return <></>
+  }
 
   return (
     <>
