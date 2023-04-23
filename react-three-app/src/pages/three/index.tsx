@@ -85,17 +85,13 @@ const renderScene = () => {
   return renderer;
 };
 
-interface IPageProperties {
-  styles: any
-}
-
-function Page({ styles }: IPageProperties) {
+const Page = () => {
   useEffect(() => {
     const renderer = renderScene();
     document.getElementById('canvas')?.appendChild(renderer.domElement)
   }, []);
   return (
-    <div style={styles.page}>
+    <div>
       <div id="canvas"></div>
     </div>
   )
