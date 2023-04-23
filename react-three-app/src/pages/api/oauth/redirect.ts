@@ -42,8 +42,7 @@ export default async function handler(
       Authorization: `token ${accessToken}`,
     },
   });
-  console.log(result.data);
   const name = result.data.name;
 
-  res.redirect(307, `/?name=${name}`);
+  res.redirect(307, `/td/?name=${name}`);
 }
